@@ -7,21 +7,14 @@ public class Example {
     private StringBuilder stringBuilder = new StringBuilder();
 
     public void checkSecurity(String[] people) {
-        sendAlert(people);
         String found = foundMiscreant(people);
+        sendAlert(found);
         someLaterCode(found);
     }
 
-    private void sendAlert(String[] people) {
-        for (int i = 0; i < people.length; i++) {
-            if (people[i].equals ("Don")){
-                sendAlert();
-                return;
-            }
-            if (people[i].equals ("John")){
-                sendAlert();
-                return;
-            }
+    private void sendAlert(String personName) {
+        if ("Don".equals(personName) || "John".equals(personName)) {
+            sendAlert();
         }
     }
 
