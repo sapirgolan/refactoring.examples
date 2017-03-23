@@ -29,18 +29,21 @@ public class ExampleTest {
     public void checkSecurity_CalledWithDon() throws Exception {
         classUnderTest.checkSecurity(new String[]{"roue", "Don"});
         Mockito.verify(classUnderTest).someLaterCode("Don");
+        Mockito.verify(classUnderTest).sendAlert();
     }
 
     @Test
     public void checkSecurity_CalledWithJohn() throws Exception {
         classUnderTest.checkSecurity(new String[]{"John", "Don"});
         Mockito.verify(classUnderTest).someLaterCode("John");
+        Mockito.verify(classUnderTest).sendAlert();
     }
 
     @Test
     public void checkSecurity_CalledWithEmptyString() throws Exception {
         classUnderTest.checkSecurity(new String[]{"Johni", "Dson"});
         Mockito.verify(classUnderTest).someLaterCode("");
+        Mockito.verify(classUnderTest, Mockito.never()).sendAlert();
     }
 
     @Property(trials = 250)
@@ -48,7 +51,7 @@ public class ExampleTest {
         assumeThat(input, not(anyOf(hasItemInArray("John"), hasItemInArray("Don"))));
         classUnderTest.checkSecurity(input);
         Mockito.verify(classUnderTest).someLaterCode("");
-
+        Mockito.verify(classUnderTest, Mockito.never()).sendAlert();
     }
 
 }

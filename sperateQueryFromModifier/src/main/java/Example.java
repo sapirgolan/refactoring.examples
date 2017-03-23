@@ -29,7 +29,7 @@ public class Example {
     }
 
 
-    private void sendAlert() {
+    public void sendAlert() {
         stringBuilder.append(LocalDateTime.now());
     }
 }
